@@ -1,0 +1,136 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--bg-card);
+  min-height: 180px;
+}
+
+.zone:hover {
+  border-color: var(--accent-light);
+  background: rgba(124, 58, 237, 0.06);
+}
+
+.dragging {
+  border-color: var(--accent-primary);
+  background: rgba(124, 58, 237, 0.1);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.hasFile {
+  border-style: solid;
+  border-color: rgba(124, 58, 237, 0.4);
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+/* Placeholder state */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.uploadIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-light);
+  margin-bottom: 8px;
+  transition: all var(--transition);
+}
+
+.zone:hover .uploadIcon {
+  background: rgba(124, 58, 237, 0.25);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.primaryText {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.secondaryText {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.browseLink {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* File selected state */
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fileIcon {
+  font-size: 36px;
+}
+
+.fileName {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.fileSize {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0;
+  transition: opacity var(--transition);
+}
+
+.removeBtn:hover { opacity: 0.75; }
+
+/* Error */
+.error {
+  font-size: 13px;
+  color: var(--danger);
+  padding: 8px 12px;
+  background: var(--danger-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(244,63,94,0.2);
+}
