@@ -112,7 +112,7 @@ async def analyze_resume(resume_text: str, job_description: str) -> dict:
 
     genai.configure(api_key=api_key)
 
-    model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=SYSTEM_PROMPT)
+    model = genai.GenerativeModel("gemini-1.5-flash-latest", system_instruction=SYSTEM_PROMPT)
 
     user_message = f"""RESUME:
 {resume_text}
