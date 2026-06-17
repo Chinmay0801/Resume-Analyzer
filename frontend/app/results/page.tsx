@@ -114,7 +114,7 @@ function ResultsPageInner() {
               <span>🔄</span>
               <p>
                 <strong>Demo Mode</strong> — This is a sample analysis.
-                Add your <code>ANTHROPIC_API_KEY</code> to the backend <code>.env</code> file to analyze real resumes.
+                Add your <code>GEMINI_API_KEY</code> to the backend <code>.env</code> file to analyze real resumes.
               </p>
             </motion.div>
           )}
