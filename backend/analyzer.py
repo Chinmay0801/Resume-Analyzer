@@ -1,10 +1,10 @@
 """
-Claude API integration for resume analysis.
-Falls back to a rich demo response when ANTHROPIC_API_KEY is not set.
+Gemini API integration for resume analysis.
+Falls back to a rich demo response when GEMINI_API_KEY is not set.
 """
 import os
 import json
-import anthropic
+import google.generativeai as genai
 
 # ---------------------------------------------------------------------------
 # Demo / mock response (used when no API key is configured)
@@ -104,13 +104,15 @@ Guidelines:
 
 
 async def analyze_resume(resume_text: str, job_description: str) -> dict:
-    """Run resume analysis via Claude or return demo data if no key is set."""
-    api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+    """Run resume analysis via Gemini or return demo data if no key is set."""
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
 
     if not api_key:
         return DEMO_RESPONSE
 
-    client = anthropic.Anthropic(api_key=api_key)
+    genai.configure(api_key=api_key)
+
+    model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=SYSTEM_PROMPT)
 
     user_message = f"""RESUME:
 {resume_text}
@@ -122,14 +124,12 @@ JOB DESCRIPTION:
 
 Analyze the resume against the job description and return the JSON."""
 
-    message = client.messages.create(
-        model="claude-sonnet-4-5",
-        max_tokens=2048,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_message}],
+    response = model.generate_content(
+        user_message,
+        generation_config={"response_mime_type": "application/json"}
     )
 
-    response_text = message.content[0].text.strip()
+    response_text = response.text.strip()
 
     # Safely extract JSON block in case model wraps it
     start = response_text.find("{")

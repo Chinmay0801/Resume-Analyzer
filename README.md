@@ -1,6 +1,6 @@
 # Resume Analyzer
 
-> **Live ATS resume analysis powered by Claude AI** — Upload your resume, paste a job description, and get your compatibility score, missing keywords, skill gaps, and improved bullet rewrites in seconds.
+> **Live ATS resume analysis powered by Gemini AI** — Upload your resume, paste a job description, and get your compatibility score, missing keywords, skill gaps, and improved bullet rewrites in seconds.
 
 [![Frontend](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://your-app.vercel.app)
 [![Backend](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render)](https://your-api.onrender.com)
@@ -28,7 +28,7 @@
 │   (Vercel)          │                           │   (Render)               │
 │                     │ ◀──────────────────────   │                          │
 │  Drag-drop upload   │    JSON Analysis Result   │  PDF/DOCX extraction     │
-│  Score ring         │                           │  Claude claude-sonnet-4-5│
+│  Score ring         │                           │  Claude API or Demo data │
 │  Skill chart        │                           │  Structured JSON prompt  │
 │  Suggestions panel  │                           │                          │
 └─────────────────────┘                           └──────────────────────────┘
@@ -41,7 +41,7 @@
 ### Prerequisites
 - Python 3.11+
 - Node.js 18+
-- (Optional) Anthropic API key from [console.anthropic.com](https://console.anthropic.com)
+- (Optional) Gemini API key from [aistudio.google.com](https://aistudio.google.com/)
 
 ### Backend
 
@@ -49,7 +49,7 @@
 cd backend
 pip install -r requirements.txt
 cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY (leave blank for demo mode)
+# Edit .env and add your GEMINI_API_KEY (leave blank for demo mode)
 uvicorn main:app --reload
 # API runs at http://localhost:8000
 # Docs at http://localhost:8000/docs
@@ -75,7 +75,7 @@ npm run dev
 1. Push this repo to GitHub
 2. Create a new **Web Service** on [render.com](https://render.com)
 3. Point it to the `backend/` directory
-4. Set env vars: `ANTHROPIC_API_KEY`, `ALLOWED_ORIGINS` (your Vercel URL)
+4. Set env vars: `GEMINI_API_KEY`, `ALLOWED_ORIGINS` (your Vercel URL)
 5. Build command: `pip install -r requirements.txt`
 6. Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
@@ -123,7 +123,7 @@ Resume_Analyzer/
 ├── backend/
 │   ├── main.py          # FastAPI app + endpoints
 │   ├── extractor.py     # PDF/DOCX text extraction
-│   ├── analyzer.py      # Claude API + demo mode
+│   ├── analyzer.py      # Gemini API + demo mode
 │   ├── requirements.txt
 │   ├── render.yaml      # Render deploy config
 │   └── .env.example
@@ -147,7 +147,7 @@ Resume_Analyzer/
 | Animations | Framer Motion |
 | Charts | Recharts |
 | Backend | FastAPI, Python 3.11+ |
-| LLM | Anthropic Claude (claude-sonnet-4-5) |
+| LLM | Google Gemini (gemini-1.5-flash) |
 | PDF parsing | pdfplumber |
 | DOCX parsing | python-docx |
 | Frontend deploy | Vercel |
