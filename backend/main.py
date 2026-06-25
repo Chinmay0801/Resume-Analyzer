@@ -11,7 +11,7 @@ load_dotenv()
 app = FastAPI(
     title="Resume Analyzer API",
     version="1.0.0",
-    description="ATS Resume Analyzer powered by Claude AI",
+    description="ATS Resume Analyzer powered by Gemini AI",
 )
 
 ALLOWED_ORIGINS = os.getenv(

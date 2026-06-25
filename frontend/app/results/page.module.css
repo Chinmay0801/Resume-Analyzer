@@ -201,9 +201,40 @@
 /* Footer */
 .footer {
   margin-top: auto;
-  padding: 24px 32px;
+  padding: 28px 32px;
   text-align: center;
-  font-size: 13px;
-  color: var(--text-muted);
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerLogo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.footerDivider {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.footerSub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }

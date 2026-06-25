@@ -22,7 +22,7 @@ We are looking for expertise in:
 Python, Docker, Kubernetes, AWS, CI/CD pipelines, Microservices, System Design,
 Agile/Scrum, Redis caching, GraphQL, REST APIs, PostgreSQL, MongoDB."""
 
-print('Sending to Claude API...')
+print('Sending to Gemini API...')
 start = time.time()
 
 resp = requests.post(
@@ -42,6 +42,6 @@ print(f'Matched ({len(data["matched_keywords"])}): {data["matched_keywords"]}')
 print(f'Missing ({len(data["missing_keywords"])}): {data["missing_keywords"]}')
 print(f'Weak bullets: {len(data["weak_bullets"])}')
 if not data['is_demo']:
-    print('\nSUCCESS - Live Claude analysis is working!')
+    print('\nSUCCESS - Live Gemini analysis is working!')
 else:
     print('\nWARNING - Still returning demo data')

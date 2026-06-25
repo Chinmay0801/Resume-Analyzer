@@ -38,6 +38,26 @@
 
 .navLink:hover { color: var(--accent-light); }
 
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-light);
+  letter-spacing: 0.03em;
+}
+
 /* Hero */
 .hero {
   text-align: center;
@@ -287,9 +307,40 @@
 /* Footer */
 .footer {
   margin-top: auto;
-  padding: 24px 32px;
+  padding: 28px 32px;
   text-align: center;
-  font-size: 13px;
-  color: var(--text-muted);
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerLogo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.footerDivider {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.footerSub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }

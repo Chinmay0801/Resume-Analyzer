@@ -114,7 +114,7 @@ function ResultsPageInner() {
               <span>🔄</span>
               <p>
                 <strong>Demo Mode</strong> — This is a sample analysis.
-                Add your <code>GEMINI_API_KEY</code> to the backend <code>.env</code> file to analyze real resumes.
+                Add your <code>GEMINI_API_KEY</code> to the backend <code>.env</code> file to analyze real resumes with Gemini AI.
               </p>
             </motion.div>
           )}
@@ -240,7 +240,14 @@ function ResultsPageInner() {
         </div>
 
         <footer className={styles.footer}>
-          <p>ResumeAI &nbsp;·&nbsp; Built with FastAPI + Next.js + Claude AI</p>
+          <div className={styles.footerInner}>
+            <span className={styles.footerLogo}>⚡ ResumeAI</span>
+            <span className={styles.footerDivider}>·</span>
+            <span>Built with FastAPI · Next.js · Gemini AI</span>
+            <span className={styles.footerDivider}>·</span>
+            <span>Deployed on Render &amp; Vercel</span>
+          </div>
+          <p className={styles.footerSub}>© {new Date().getFullYear()} ResumeAI — Free forever. No data stored.</p>
         </footer>
       </div>
     </div>

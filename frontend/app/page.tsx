@@ -44,14 +44,17 @@ export default function HomePage() {
             <span className={styles.logoIcon}>⚡</span>
             <span>ResumeAI</span>
           </div>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.navLink}
-          >
-            GitHub ↗
-          </a>
+          <div className={styles.navRight}>
+            <span className={styles.navBadge}>✦ Gemini AI</span>
+            <a
+              href="https://github.com/Chinmay0801/Resume-Analyzer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.navLink}
+            >
+              GitHub ↗
+            </a>
+          </div>
         </nav>
 
         {/* Hero */}
@@ -69,7 +72,7 @@ export default function HomePage() {
               transition={{ delay: 0.1 }}
             >
               <span className={styles.heroBadgeDot} />
-              Powered by Claude AI
+              Powered by Gemini AI
             </motion.div>
 
             <motion.h1
@@ -189,7 +192,7 @@ export default function HomePage() {
             </button>
 
             <p className={styles.disclaimer}>
-              No data is stored. Analysis runs in real-time via Claude AI.
+              No data is stored. Analysis runs in real-time via Gemini AI.
             </p>
           </motion.form>
 
@@ -205,7 +208,7 @@ export default function HomePage() {
               {[
                 { icon: "📄", title: "Upload Resume", desc: "Drop your PDF or DOCX resume" },
                 { icon: "📋", title: "Paste JD", desc: "Add the job description you're targeting" },
-                { icon: "🤖", title: "AI Analysis", desc: "Claude reads both and runs a deep analysis" },
+                { icon: "🤖", title: "AI Analysis", desc: "Gemini reads both and runs a deep ATS analysis" },
                 { icon: "🎯", title: "Get Results", desc: "Score, gaps, rewrites — ready in seconds" },
               ].map((step, i) => (
                 <motion.div
@@ -226,7 +229,14 @@ export default function HomePage() {
 
         {/* Footer */}
         <footer className={styles.footer}>
-          <p>Built with FastAPI + Next.js + Claude AI &nbsp;·&nbsp; Deployed on Render + Vercel</p>
+          <div className={styles.footerInner}>
+            <span className={styles.footerLogo}>⚡ ResumeAI</span>
+            <span className={styles.footerDivider}>·</span>
+            <span>Built with FastAPI · Next.js · Gemini AI</span>
+            <span className={styles.footerDivider}>·</span>
+            <span>Deployed on Render &amp; Vercel</span>
+          </div>
+          <p className={styles.footerSub}>© {new Date().getFullYear()} ResumeAI — Free forever. No data stored.</p>
         </footer>
       </div>
     </div>

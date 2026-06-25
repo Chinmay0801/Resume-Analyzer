@@ -5,6 +5,7 @@ Falls back to a rich demo response when GEMINI_API_KEY is not set.
 import os
 import json
 import google.generativeai as genai
+from google.api_core.exceptions import ResourceExhausted, InvalidArgument
 
 # ---------------------------------------------------------------------------
 # Demo / mock response (used when no API key is configured)
@@ -69,7 +70,7 @@ DEMO_RESPONSE = {
 }
 
 # ---------------------------------------------------------------------------
-# Claude prompt
+# Gemini prompt
 # ---------------------------------------------------------------------------
 SYSTEM_PROMPT = """\
 You are an expert ATS (Applicant Tracking System) resume analyzer and career coach.
@@ -112,7 +113,7 @@ async def analyze_resume(resume_text: str, job_description: str) -> dict:
 
     genai.configure(api_key=api_key)
 
-    model = genai.GenerativeModel("gemini-1.5-flash-latest", system_instruction=SYSTEM_PROMPT)
+    model = genai.GenerativeModel("gemini-2.0-flash", system_instruction=SYSTEM_PROMPT)
 
     user_message = f"""RESUME:
 {resume_text}
@@ -124,20 +125,34 @@ JOB DESCRIPTION:
 
 Analyze the resume against the job description and return the JSON."""
 
-    response = model.generate_content(
-        user_message,
-        generation_config={"response_mime_type": "application/json"}
-    )
+    try:
+        response = model.generate_content(
+            user_message,
+            generation_config={"response_mime_type": "application/json"}
+        )
 
-    response_text = response.text.strip()
+        response_text = response.text.strip()
 
-    # Safely extract JSON block in case model wraps it
-    start = response_text.find("{")
-    end = response_text.rfind("}") + 1
-    if start == -1 or end == 0:
-        raise ValueError("Model did not return valid JSON.")
-    json_str = response_text[start:end]
+        # Safely extract JSON block in case model wraps it
+        start = response_text.find("{")
+        end = response_text.rfind("}") + 1
+        if start == -1 or end == 0:
+            raise ValueError("Model did not return valid JSON.")
+        json_str = response_text[start:end]
 
-    result = json.loads(json_str)
-    result["is_demo"] = False
-    return result
+        result = json.loads(json_str)
+        result["is_demo"] = False
+        return result
+
+    except ResourceExhausted:
+        # Quota exceeded — fall back to demo with a helpful note
+        demo = dict(DEMO_RESPONSE)
+        demo["is_demo"] = True
+        demo["summary"] = (
+            "⚠️ Gemini API quota exceeded for this key. "
+            "Please wait a minute and try again, or enable billing on your Google Cloud project. "
+            "Showing sample demo analysis below."
+        )
+        return demo
+    except InvalidArgument as e:
+        raise ValueError(f"Invalid Gemini API request: {e}") from e
